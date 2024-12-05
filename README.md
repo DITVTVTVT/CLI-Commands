@@ -291,14 +291,14 @@ echo line3
 | Command                      | Description                                                                                  |
 |------------------------------|----------------------------------------------------------------------------------------------|
 | ---------HDD--------         |                                                                                              |
-| df -h                        | - human read                                                                                 |
-| df -hTi                      | - процент занятых inode                                                                      |
-| du -sh /tmp                  | - место, занимаемое папкой на диске                                                          |
-| smartctl -a /dev/sda***      | - smart диска                                                                                |
-| cat /proc/mdstat             | - информация о RAID массивах                                                                 |
-| iostat                       | - сколько данных пишется и читается с диска                                                  |
-| iotop                        | - какие процессы пишут и читают с диска                                                      |
-| yum autoremove               | - удалить неиспользуемые пакеты и старые ядра                                                |
+| `df -h`                      | - human read                                                                                 |
+| `df -hTi                 `   | - процент занятых inode                                                                      |
+| `du -sh /tmp             `   | - место, занимаемое папкой на диске                                                          |
+| `smartctl -a /dev/sda*** `   | - smart диска                                                                                |
+| `cat /proc/mdstat        `   | - информация о RAID массивах                                                                 |
+| `iostat                  `   | - сколько данных пишется и читается с диска                                                  |
+| `iotop                   `   | - какие процессы пишут и читают с диска                                                      |
+| `yum autoremove          `   | - удалить неиспользуемые пакеты и старые ядра                                                |
 | ---------CPU--------         |                                                                                              |
 | top                          | - диспетчер процессов                                                                        |
 | *us                          | - юзер процессы                                                                              |
@@ -356,7 +356,12 @@ echo line3
 [Как копировать файлы между модулями Kubernetes и вашей машиной](https://ru.linux-console.net/?p=7675)  
 [Включение файла подкачки](https://losst.pro/fajl-podkachki-linux)  
 [Поиск больших файлов и директорий в Linux](https://pingvinus.ru/note/find-big-files#:~:text=%D0%9A%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0%20du%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D1%82%D1%81%D1%8F%20%D0%B4%D0%BB%D1%8F%20%D0%B2%D1%8B%D0%B2%D0%BE%D0%B4%D0%B0,%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%B5%20%D0%B2%D1%81%D0%B5%D0%B3%D0%BE%20%D0%BC%D0%B5%D1%81%D1%82%D0%B0%20%D0%BD%D0%B0%20%D0%B4%D0%B8%D1%81%D0%BA%D0%B5)  
+```
 du -ahx . | sort -rh | head -5  
 du -cksh *  
 find . -mount -type f -size +512M -print 2>/dev/null | xargs -r -d '\n' ls -lh | sort -k5,5 -h -r  
-[GitHibShamrockOo4tune](https://github.com/ShamrockOo4tune/interview)  
+```
+[GitHib ShamrockOo4tune](https://github.com/ShamrockOo4tune/interview)  
+[CentOS-WSL](https://github.com/mishamosher/CentOS-WSL)  
+[Уменьшение размера логов journald](https://flazy.ru/clean-journald/)  
+
