@@ -99,7 +99,7 @@ curl http://172.18.0.1:3100/loki/api/v1/labels
 # Nginx
 ---
 
-nginx -s <сигнал>  
+`nginx -s <сигнал>`  
 Где сигнал может быть одним из нижеследующих:  
 
 `stop`    - быстрое завершение  
@@ -107,7 +107,7 @@ nginx -s <сигнал>
 `reload`  - перезагрузка конфигурационного файла  
 `reopen`  - переоткрытие лог-файлов  
 
-docker run -p 127.0.0.1:8080:80 nginx   - запуск контейнера nginx  
+`docker run -p 127.0.0.1:8080:80 nginx`   - запуск контейнера nginx  
 
 # Kubernetes
 ---
@@ -157,7 +157,7 @@ docker run -p 127.0.0.1:8080:80 nginx   - запуск контейнера ngin
 | `kubectl config get-contexts`                                                                                                                                                                                    | - описать один или много контекстов                                                                                                                                                                      |
 | **Пространства имен**                                                                                                                                                                                            |                                                                                                                                                                                                          |
 | `kubectl get namespaces`                                                                                                                                                                                         | - получить все пространства имен                                                                                                                                                                         |
-| `kubectl get namespaces -...o yaml`                                                                                                                                                                              | - получить информацию о пространстве имен в формате yaml                                                                                                                                                 |
+| `kubectl get namespaces -o yaml`                                                                                                                                                                                 | - получить информацию о пространстве имен в формате yaml                                                                                                                                                 |
 | `kubectl describe namespace default`                                                                                                                                                                             | - описать пространство имен по умолчанию                                                                                                                                                                 |
 | `kubectl create namespace my-namespace`                                                                                                                                                                          | - создать новое пространство имен                                                                                                                                                                        |
 | `kubectl delete namespace my-namespace`                                                                                                                                                                          | - удалить пространство имен                                                                                                                                                                              |
