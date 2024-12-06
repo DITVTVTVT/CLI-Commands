@@ -208,3 +208,17 @@ curl http://172.18.0.1:3100/loki/api/v1/labels
 | `kubectl delete -f my-pod.yml`                                                                                                                                                                                   | - удалить объект                                                                                                                                                                                         |
 
 
+# AWS CLI Command Reference
+
+https://docs.aws.amazon.com/cli/latest/
+___
+| Command                                                                | Description                                                                  |
+|------------------------------------------------------------------------|------------------------------------------------------------------------------|
+| **[s3 buckets](https://docs.aws.amazon.com/cli/latest/reference/s3/)** |                                                                              |
+| aws s3 ls                                                              | - показать все бакеты                                                        |
+| aws s3 mb s3://mynewbucket                                             | - создать бакет                                                              |
+| aws s3 mb s3://mynewbucketinwestusa  --region=us-west-1                | - создать бакет в регионе s-west-1                                           |
+| aws s3 rb s3://mynewbucket                                             | - удалить бакет                                                              |
+| aws s3 cp  c:\hlam  s3://destinationbucketname                         | - скопировать объект в бакет                                                 |
+| aws s3 sync s3://mynewbucket  c:\MyFolder                              | - синхронизировать каталог с бакетом (только добавленные и измененные файлы) |
+| aws s3 rm --recursive s3://mynewbucket                                 | - удалить все из бакета                                                      |
