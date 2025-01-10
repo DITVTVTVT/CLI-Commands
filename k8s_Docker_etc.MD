@@ -212,13 +212,15 @@ curl http://172.18.0.1:3100/loki/api/v1/labels
 
 https://docs.aws.amazon.com/cli/latest/
 ___
-| Command                                                                | Description                                                                  |
-|------------------------------------------------------------------------|------------------------------------------------------------------------------|
-| **[s3 buckets](https://docs.aws.amazon.com/cli/latest/reference/s3/)** |                                                                              |
-| `aws s3 ls`                                                              | - показать все бакеты                                                        |
-| `aws s3 mb s3://mynewbucket`                                             | - создать бакет                                                              |
-| `aws s3 mb s3://mynewbucketinwestusa  --region=us-west-1`                | - создать бакет в регионе s-west-1                                           |
-| `aws s3 rb s3://mynewbucket`                                             | - удалить бакет                                                              |
-| `aws s3 cp  c:\hlam  s3://destinationbucketname`                         | - скопировать объект в бакет                                                 |
-| `aws s3 sync s3://mynewbucket  c:\MyFolder`                              | - синхронизировать каталог с бакетом (только добавленные и измененные файлы) |
-| `aws s3 rm --recursive s3://mynewbucket`                                 | - удалить все из бакета                                                      |
+| Command                                                                               | Description                                                                  |
+|---------------------------------------------------------------------------------------|------------------------------------------------------------------------------|
+| **[s3 buckets](https://docs.aws.amazon.com/cli/latest/reference/s3/)**                |                                                                              |
+| `aws s3 ls`                                                                           | - показать все бакеты                                                        |
+| `aws s3 mb s3://mynewbucket`                                                          | - создать бакет                                                              |
+| `aws s3 mb s3://mynewbucketinwestusa  --region=us-west-1`                             | - создать бакет в регионе s-west-1                                           |
+| `aws s3 rb s3://mynewbucket`                                                          | - удалить бакет                                                              |
+| `aws s3 cp  c:\hlam  s3://destinationbucketname`                                      | - скопировать объект в бакет                                                 |
+| `aws s3 sync s3://mynewbucket  c:\MyFolder`                                           | - синхронизировать каталог с бакетом (только добавленные и измененные файлы) |
+| `aws s3 rm --recursive s3://mynewbucket`                                              | - удалить все из бакета                                                      |
+| **[s3 Lambda](https://docs.aws.amazon.com/cli/latest/reference/lambda/)**             |                                                                              |
+| `aws lambda invoke --function-name=LambdaListS3Buckets --region=us-east-1 output.txt` | - запустить лямбда-функцию с выводом в файл                                  |
