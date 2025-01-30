@@ -1,0 +1,1 @@
+[HashiCorp Vault + Terraform: The Ultimate Secrets Management Guide](https://www.youtube.com/watch?v=FQE_gyEwu0Q&ab_channel=KodeKloud)

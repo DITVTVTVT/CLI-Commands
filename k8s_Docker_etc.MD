@@ -110,6 +110,9 @@ curl http://172.18.0.1:3100/loki/api/v1/labels
 # Kubernetes
 ---
 
+`minikube start` - старт миникуба (должен быть заинсталлен)
+`minikube node add` - добавить ноду
+
 [Установка k8s на ubuntu](https://www.heyvaldemar.net/ustanovka-kubernetes-na-ubuntu-server-22-04-lts/)  
 [Как копировать файлы между модулями Kubernetes и вашей машиной](https://ru.linux-console.net/?p=7675)  
 
@@ -153,6 +156,7 @@ curl http://172.18.0.1:3100/loki/api/v1/labels
 | `kubectl config current-context`                                                                                                                                                                                 | - просмотр текущего контекста                                                                                                                                                                            |
 | `kubectl config get-clusters`                                                                                                                                                                                    | - показать кластеры, определенные в kubeconfig                                                                                                                                                           |
 | `kubectl config get-contexts`                                                                                                                                                                                    | - описать один или много контекстов                                                                                                                                                                      |
+| `kubectl config use-contexts`                                                                                                                                                                                    | - выбрать контекст                                                                                                                                                                                       |
 | **Пространства имен**                                                                                                                                                                                            |                                                                                                                                                                                                          |
 | `kubectl get namespaces`                                                                                                                                                                                         | - получить все пространства имен                                                                                                                                                                         |
 | `kubectl get namespaces -o yaml`                                                                                                                                                                                 | - получить информацию о пространстве имен в формате yaml                                                                                                                                                 |
@@ -224,3 +228,12 @@ ___
 | `aws s3 rm --recursive s3://mynewbucket`                                              | - удалить все из бакета                                                      |
 | **[s3 Lambda](https://docs.aws.amazon.com/cli/latest/reference/lambda/)**             |                                                                              |
 | `aws lambda invoke --function-name=LambdaListS3Buckets --region=us-east-1 output.txt` | - запустить лямбда-функцию с выводом в файл                                  |
+
+# Terraform
+
+___
+| Command                          | Description                   |
+|----------------------------------|-------------------------------|
+| `terraform init`                 | - инициализировать проект     |
+| `terraform plan`                 | - протестировать              |
+| `terraform apply --auto-approve` | - применить без подтверждения |
