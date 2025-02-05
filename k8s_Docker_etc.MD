@@ -110,9 +110,6 @@ curl http://172.18.0.1:3100/loki/api/v1/labels
 # Kubernetes
 ---
 
-`minikube start` - старт миникуба (должен быть заинсталлен)
-`minikube node add` - добавить ноду
-
 [Установка k8s на ubuntu](https://www.heyvaldemar.net/ustanovka-kubernetes-na-ubuntu-server-22-04-lts/)  
 [Как копировать файлы между модулями Kubernetes и вашей машиной](https://ru.linux-console.net/?p=7675)  
 
@@ -208,11 +205,26 @@ curl http://172.18.0.1:3100/loki/api/v1/labels
 | `kubectl get service nginx-service`                                                                                                                                                                              | - получить конкретный сервис                                                                                                                                                                             |
 | `kubectl delete service nginx-service`                                                                                                                                                                           | - удалить сервис                                                                                                                                                                                         |
 | `kubectl run mypod --image=nginx --dry-run=client -o yaml > my-pod.yml`                                                                                                                                          | - создать файл определения для pod                                                                                                                                                                       |
+| `kubectl run -it --rm --image=curlimages/curl -n argocd curly -- /bin/sh`                                                                                                                                        | - запуск тестового пода с курлом                                                                                                                                                                         |
 | `kubectl create -f my-pod.yml`                                                                                                                                                                                   | - создать объект                                                                                                                                                                                         |
 | `kubectl delete -f my-pod.yml`                                                                                                                                                                                   | - удалить объект                                                                                                                                                                                         |
 
+# Minikube
+---
+
+| Command                                | Description                                |
+|----------------------------------------|--------------------------------------------|
+| `minikube start`                       | - старт миникуба (должен быть заинсталлен) |
+| `minikube node add`                    | - добавить ноду                            |
+| `minikube start --nodes 3 -p demo-dev` | - старт кластера с 3 нодами и именем       |
+| `minikube node delete demo-prod-m02`   | - удалить ноду в кластере                  |
+| `minikube stop -p demo-dev`            | - остановить кластер                       |
+| `minikube delete -p demo-dev`          | - удалить кластер                          |
+
+
 
 # AWS CLI Command Reference
+---
 
 https://docs.aws.amazon.com/cli/latest/
 ___
@@ -230,10 +242,13 @@ ___
 | `aws lambda invoke --function-name=LambdaListS3Buckets --region=us-east-1 output.txt` | - запустить лямбда-функцию с выводом в файл                                  |
 
 # Terraform
-
+[Basic CLI Features](https://developer.hashicorp.com/terraform/cli/commands)
 ___
-| Command                          | Description                   |
-|----------------------------------|-------------------------------|
-| `terraform init`                 | - инициализировать проект     |
-| `terraform plan`                 | - протестировать              |
-| `terraform apply --auto-approve` | - применить без подтверждения |
+| Command                          | Description                     |
+|----------------------------------|---------------------------------|
+| `terraform init`                 | - инициализировать конфигурацию |
+| `terraform plan`                 | - протестировать                |
+| `terraform apply --auto-approve` | - применить без подтверждения   |
+| `terraform destroy [options]`    | - удаляет объекты конфигурации  |
+| `terraform apply -destroy`       | - то же, но с опциями apply     |
+| `terraform plan -destroy`        | - моделирует удаление           |
