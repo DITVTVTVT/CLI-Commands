@@ -140,6 +140,8 @@ curl http://172.18.0.1:3100/loki/api/v1/labels
 | `kubectl get pods --all-namespaces -o jsonpath='{range .items[].status.initContainerStatuses[]}{.containerID}{"\n"}{end}' \| cut -d/ -f3`                                                                        | - вывести все идентификаторы (containerID) контейнеров инициализации (initContainers) во всех подах.<br/>Это полезно при очистке остановленных контейнеров, не удаляя при этом контейнеры инициализации. |
 | `kubectl get events --sort-by=.metadata.creationTimestamp`                                                                                                                                                       | - вывести события, отсортированные по временной метке                                                                                                                                                    |
 | `kubectl diff -f ./my-manifest.yaml`                                                                                                                                                                             | - сравнить текущее состояние кластера с состоянием, в котором находился бы кластер в случае применения манифеста                                                                                         |
+| `kubectl get all -n argocd`                                                                                                                                                                                      | - вывести все ресурсы в неймспейсе                                                                                                                                                                       |
+| `kubectl get all -A`                                                                                                                                                                                             | - вывести все ресурсы во всех неймспейсах                                                                                                                                                                |
 | **Информация о кластере**                                                                                                                                                                                        |                                                                                                                                                                                                          |
 | `kubectl version`                                                                                                                                                                                                | - вывод информации о версии клиента и сервера                                                                                                                                                            |
 | `kubectl api-resources`                                                                                                                                                                                          | - вывод поддерживаемых ресурсов API на сервере                                                                                                                                                           |
@@ -240,9 +242,17 @@ ___
 | `aws s3 rm --recursive s3://mynewbucket`                                              | - удалить все из бакета                                                      |
 | **[s3 Lambda](https://docs.aws.amazon.com/cli/latest/reference/lambda/)**             |                                                                              |
 | `aws lambda invoke --function-name=LambdaListS3Buckets --region=us-east-1 output.txt` | - запустить лямбда-функцию с выводом в файл                                  |
+| **AIM**                                                                               |                                                                              |
+| `aws iam create-instance-profile`                                                     | - создать инстанс профайл                                                    |
+| `aws iam add-role-to-instance-profile`                                                | - добавить роль в инстанс профайл                                            |
 
 # Terraform
 [Basic CLI Features](https://developer.hashicorp.com/terraform/cli/commands)
+---
+Environment Variables:
+`AWS_ACCESS_KEY=`
+`AWS_SECRET_KEY=`
+`AWS_DEFAULT_REGION=`
 ___
 | Command                          | Description                     |
 |----------------------------------|---------------------------------|
@@ -252,3 +262,15 @@ ___
 | `terraform destroy [options]`    | - удаляет объекты конфигурации  |
 | `terraform apply -destroy`       | - то же, но с опциями apply     |
 | `terraform plan -destroy`        | - моделирует удаление           |
+
+# Helm
+---
+---
+| Command                   | Description                  |
+|---------------------------|------------------------------|
+| `helm search repo argocd` | - поиск репо с именем argocd |
+
+# Python
+---
+---
+`pip freeze > reqirements.txt`

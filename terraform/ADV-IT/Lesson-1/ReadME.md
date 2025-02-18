@@ -1,0 +1,1 @@
+[5-Terraform - Создание Ресурсов AWS](https://www.youtube.com/watch?v=WzVT6rZTtYk&list=PLg5SS_4L6LYujWDTYb-Zbofdl44Jxb2l8&index=7&ab_channel=ADV-IT)
