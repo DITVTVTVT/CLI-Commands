@@ -245,6 +245,8 @@ ___
 | **AIM**                                                                               |                                                                              |
 | `aws iam create-instance-profile`                                                     | - создать инстанс профайл                                                    |
 | `aws iam add-role-to-instance-profile`                                                | - добавить роль в инстанс профайл                                            |
+| **EC2**                                                                               |                                                                              |
+| `aws ec2 describe-instances`                                                          | - развернуто текущие инстансы                                                |
 
 # Terraform
 [Basic CLI Features](https://developer.hashicorp.com/terraform/cli/commands)
@@ -254,14 +256,27 @@ Environment Variables:
 `AWS_SECRET_KEY=`
 `AWS_DEFAULT_REGION=`
 ___
-| Command                          | Description                     |
-|----------------------------------|---------------------------------|
-| `terraform init`                 | - инициализировать конфигурацию |
-| `terraform plan`                 | - протестировать                |
-| `terraform apply --auto-approve` | - применить без подтверждения   |
-| `terraform destroy [options]`    | - удаляет объекты конфигурации  |
-| `terraform apply -destroy`       | - то же, но с опциями apply     |
-| `terraform plan -destroy`        | - моделирует удаление           |
+## **Variable Definition Precedence**
+
+* Environment variables
+* The `terraform.tfvars` file, if present.
+* The `terraform.tfvars.json` file, if present.
+* Any `*.auto.tfvars` or `*.auto.tfvars.json` files, processed in lexical order of their filenames.
+* Any `-var` and `-var-file` options on the command line, in the order they are provided. (This includes variables set by an HCP Terraform workspace.)
+___
+
+| Command                          | Description                                 |
+|----------------------------------|---------------------------------------------|
+| `terraform init`                 | - инициализировать конфигурацию             |
+| `terraform plan`                 | - протестировать                            |
+| `terraform apply --auto-approve` | - применить без подтверждения               |
+| `terraform destroy [options]`    | - удаляет объекты конфигурации              |
+| `terraform apply -destroy`       | - то же, но с опциями apply                 |
+| `terraform plan -destroy`        | - моделирует удаление                       |
+| `terrafotm console`              | - попробовать функцию через консоль         |
+| `terraform state list`           | - показать текущие ресурсы                  |
+| `terraform show`                 | - показывает аттрибуты запущенных сущностей |
+
 
 # Helm
 ---
@@ -274,3 +289,7 @@ ___
 ---
 ---
 `pip freeze > reqirements.txt`
+
+
+ENV in PowerShell:
+`$env:TF_VAR_region = "us-east-1"`

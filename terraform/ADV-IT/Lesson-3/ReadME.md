@@ -1,0 +1,1 @@
+[9-Terraform - Использование Статических внешних файлов - file](https://www.youtube.com/watch?v=4Uxd6OFypzM&list=PLg5SS_4L6LYujWDTYb-Zbofdl44Jxb2l8&index=11&ab_channel=ADV-IT)
