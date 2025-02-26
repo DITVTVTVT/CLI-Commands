@@ -250,6 +250,7 @@ ___
 
 # Terraform
 [Basic CLI Features](https://developer.hashicorp.com/terraform/cli/commands)
+[Terraform AWS modules](https://registry.terraform.io/search/modules?namespace=terraform-aws-modules&provider=aws)
 ---
 Environment Variables:
 `AWS_ACCESS_KEY=`
@@ -265,18 +266,33 @@ ___
 * Any `-var` and `-var-file` options on the command line, in the order they are provided. (This includes variables set by an HCP Terraform workspace.)
 ___
 
-| Command                          | Description                                 |
-|----------------------------------|---------------------------------------------|
-| `terraform init`                 | - инициализировать конфигурацию             |
-| `terraform plan`                 | - протестировать                            |
-| `terraform apply --auto-approve` | - применить без подтверждения               |
-| `terraform destroy [options]`    | - удаляет объекты конфигурации              |
-| `terraform apply -destroy`       | - то же, но с опциями apply                 |
-| `terraform plan -destroy`        | - моделирует удаление                       |
-| `terrafotm console`              | - попробовать функцию через консоль         |
-| `terraform state list`           | - показать текущие ресурсы                  |
-| `terraform show`                 | - показывает аттрибуты запущенных сущностей |
+| Command                          | Description                                           |
+|----------------------------------|-------------------------------------------------------|
+| `terraform init`                 | - инициализировать конфигурацию                       |
+| `terraform plan`                 | - протестировать                                      |
+| `terraform apply --auto-approve` | - применить без подтверждения                         |
+| `terraform destroy [options]`    | - удаляет объекты конфигурации                        |
+| `terraform apply -destroy`       | - то же, но с опциями apply                           |
+| `terraform plan -destroy`        | - моделирует удаление                                 |
+| `terrafotm console`              | - попробовать функцию через консоль                   |
+| `terraform show`                 | - показывает аттрибуты запущенных сущностей           |
+| `terraform state show`           | - показывает аттрибуты определенной сущности          |
+| `terraform state list`           | - показать текущие ресурсы                            |
+| `terraform state pull`           | - выводит на экран весь remote state                  |
+| `terraform state rm`             | - удаляет ресурс из remote state                      |
+| `terraform state push`           | - перезаписывает стейт                                |
+| `terraform state mv`             | - изменяет ресурс в стейте без пересоздания           |
+| `terraform taint`                | - пометить ресурс для пересоздания                    |
+| `terraform apply -replace`       | - пометить ресурс для пересоздания - с версии v0.15.2 |
+| `terraform workspace show`       | - показать, в каком воркспейсе сейчас работаем        |
+| `terraform workspace list`       | - показать, какие есть воркспейсы                     |
+| `terraform workspace new`        | - создать новый воркспейс                             |
+| `terraform workspace select`     | - перейти в воркспейс                                 |
+| `terraform workspace delete`     | - удалить воркспейс                                   |
 
+
+`for i in $(terraform state list); do terraform state mv -state-out="ter
+raform.tfstate" $i $i;done` - переместить весь вывод листа в файл
 
 # Helm
 ---
