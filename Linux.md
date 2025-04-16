@@ -343,13 +343,15 @@ cat /dev/zero | bzip2 -c > /dev/null - CPU Stress Test
 | `ip link show`                                               | – то же                                                                                      |
 | `netstat -rn`                                                | - информация о маршрутах                                                                     |
 | `ip r`                                                       | - примерно то же самое                                                                       |
-| `traceroute<IP>`                                             | - путь пакетов до IP                                                                         |
+| `traceroute -n -T -p 22 <IP>`                                | - путь пакетов до IP. The argument -T -p 22 -n performs a TCP-based trace on port 22.        |
 | `mtr`                                                        | - трассировка в живом режиме                                                                 |
 | `dig`                                                        | - запросы к dns серверам    -t - тип записи                                                  |
 | `nslookup`                                                   | - то же                                                                                      |
 | `tcpdump -i any port 9100-nn`                                | - показывает, какие пакеты ходят через какие интерфейсы                                      |
 | `nc [IP] [port]`                                             | - проверить, открыт ли порт на удаленном хосте                                               |
 | `telnet [IP] [port]`                                         | - то же, но интерактивно                                                                     |
+| `mtr -n -c 200 <instance/host> --report`                     | - ICMP-based MTR  requests time out                                                          |
+| `mtr -n -T -c 200 <instance/host> --report`                  | - TCP-based MTR  requests time out                                                           |
 | **---------LOGS--------**                                    |                                                                                              |
 | `tail -f -n50 /var/log/syslog`                               | - показать последние 50 строк в файле с обновлением                                          |
 | /var/log/auth.log                                            | - логи авторизации                                                                           |
