@@ -169,7 +169,7 @@ curl http://172.18.0.1:3100/loki/api/v1/labels
 | `kubectl run my-pod-2 --image=nginx:latest --namespace=my-namespace`                                                                                                                                             | - создать pod в указанном пространстве имен                                                                                                                                                              |
 | `kubectl run nginx --image=nginx -l --labels=app=test`                                                                                                                                                           | - создать pod с меткой к нему                                                                                                                                                                            |
 | `kubectl get pods --show-labels`                                                                                                                                                                                 | - получить все pod с выводом меток                                                                                                                                                                       |
-| `kubectl get pods -o wide`                                                                                                                                                                                       | - получить капсулы с расширенным/широким выводом                                                                                                                                                         |
+| `kubectl get pods -o wide`                                                                                                                                                                                       | - получить поды с расширенным/широким выводом                                                                                                                                                            |
 | `kubectl get pods --sort-by=.metadata.name`                                                                                                                                                                      | - перечислить капсулы в отсортированном порядке                                                                                                                                                          |
 | `kubectl logs my-pod-1`                                                                                                                                                                                          | - получение журналов пода                                                                                                                                                                                |
 | `kubectl get pods my-pod-2 --namespace=my-namespace -o wide`                                                                                                                                                     | - получение подов в указанном пространстве имен с расширенным/широким выводом                                                                                                                            |
@@ -210,6 +210,109 @@ curl http://172.18.0.1:3100/loki/api/v1/labels
 | `kubectl run -it --rm --image=curlimages/curl -n argocd curly -- /bin/sh`                                                                                                                                        | - запуск тестового пода с курлом                                                                                                                                                                         |
 | `kubectl create -f my-pod.yml`                                                                                                                                                                                   | - создать объект                                                                                                                                                                                         |
 | `kubectl delete -f my-pod.yml`                                                                                                                                                                                   | - удалить объект                                                                                                                                                                                         |
+
+`alias k=‘kubectl’`
+`alias kgp=‘kubectl get pods’`
+`alias kgs=‘kubectl get service’`
+`alias kd=‘kubectl delete’`
+`alias kcf=‘kubectl create -f’`
+`alias kaf=‘kubectl apply -f’`
+`alias kgpa=‘kubectl get pods --all-namespaces’`
+
+`vi ~/.vimrc`
+`set number`
+`set tabstop=2`
+`set expandtab`
+`set shiftwidth=2`
+`set cursorline`
+
+`kubectl run nginx --image=nginx --labels="tier=db"`
+`kubectl run nginx --image=nginx --dry-run=client -o yaml --port=80 --expose=true`
+`kubectl create deployment --image=nginx nginx`
+`kubectl create deployment --image=nginx nginx --dry-run=client -o yaml`
+`kubectl create deployment nginx --image=nginx --replicas=4`
+`kubectl scale deployment nginx --replicas=4`
+`kubectl create deployment nginx --image=nginx --dry-run=client -o yaml > nginx-deployment.yaml`
+`kubectl expose pod redis --port=6379 --name redis-service --dry-run=client -o yaml`
+`kubectl create service clusterip redis --tcp=6379:6379 --dry-run=client -o yaml`
+`kubectl expose pod nginx --type=NodePort --port=80 --name=nginx-service --dry-run=client -o yaml`
+`kubectl create service nodeport nginx --tcp=80:80 --node-port=30080 --dry-run=client -o yaml`
+`k replace --force -f nginx.yaml`
+`kubectl get pod webapp -o yaml > my-new-pod.yaml`
+`k get pods --selector bu=finance,env=prod,tier=frontend`
+`k get pods --selector env=dev --no-headers | wc -l`
+`k get all --selector env=prod`
+`k taint node node01 spray=mortein:NoSchedule`
+`k taint node node01 spray=mortein:NoSchedule-`
+`k label node node01 color=blue`
+`kubectl get serviceaccount -n kube-system`
+`kubectl get clusterrolebinding`
+`ps -ef | grep kube-apiserver | grep admission-plugins`
+`k get all`
+`k set image deploy frontend simple-webapp=kodekloud/webapp-color:v2`
+`kubectl autoscale deployment nginx-deployment --max=3 --cpu-percent=80`
+`kubectl drain node01 --ignore-daemonsets`
+`kubeadm upgrade plan`
+`alias k=kubectl`
+`ETCDCTL_API=3 etcdctl snapshot save --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key --endpoints=https://127.0.0.1:2379 /opt/snapshot-pre-boot.db`
+`ETCDCTL_API=3 etcdctl member list --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key --endpoints=https://127.0.0.1:2379 /opt/snapshot-pre-boot.db`
+
+`ETCDCTL_API=3 etcdctl  --data-dir /var/lib/etcd-from-backup \
+snapshot restore /opt/snapshot-pre-boot.db`
+`watch "crictl ps | grep etcd"`
+`kubectl config get-clusters`
+`ssh cluster2-controlplane ps -ef | grep --color=auto etcd`
+`vim /etc/systemd/system/etcd.service
+chown -R etcd:etcd /var/lib/etcd-data-new
+ls -ld /var/lib/etcd-data-new/
+systemctl daemon-reload
+systemctl restart etcd`
+`openssl x509 -in file-path.crt -text -noout`
+`crictl ps -a
+crictl logs container-id`
+`kubectl config view`
+`k get role`
+`kubectl describe rolebinding kube-proxy -n kube-system`
+`kubectl create role developer --namespace=default --verb=list,create,delete --resource=pods`
+`kubectl auth can-i list storageclasses --as michelle`
+`kubectl set serviceaccount deploy/web-dashboard dashboard-sa`
+`k create secret docker-registry  <name> --docker-username= --docker-password= --docker-server= --docker-email=`
+`kubectl exec ubuntu-sleeper -- whoami`
+`ip -n red addr add 192.168.1.10/24 dev veth-red`
+`ip a` `ip a | grep 192.168.227.191 -B2`
+`ip address show type bridge`
+`ip link` `ip link show cni0`
+`ip route show default`
+`netstat -nplt`
+`netstat -anp | grep etcd`
+`ps -aux | grep kubelet | grep --color container-runtime-endpoint`
+`ls /opt/cni/bin`
+`ls /etc/cni/net.d/`
+`cat /etc/kubernetes/manifests/kube-apiserver.yaml | grep cluster-ip-range`
+`journalctl -u kubelet`
+
+`kubectl -n admin2406 get deployment -o custom-columns=DEPLOYMENT:.metadata.name,CONTAINER_IMAGE:.spec.template.spec.containers[].image,READY_REPLICAS:.status.readyReplicas,NAMESPACE:.metadata.namespace --sort-by=.metadata.name > /opt/admin2406_data`
+`kubectl set image deployment nginx-deploy nginx=nginx:1.17`
+`kubectl annotate deployment nginx-deploy kubernetes.io/change-cause="Updated nginx image to 1.17"`
+
+`helm ls -A`
+`helm repo ls`
+`helm repo update -n kk-ns kk-mock1`
+`helm search repo kk-mock1/nginx -n kk-ns -l | head -n30`
+`helm upgrade kk-mock1 kk-mock1/nginx -n kk-ns --version=18.1.15`
+
+`kubectl get deploy -n atlanta-page-04 atlanta-page-apd -o json | jq -r '.spec.template.spec.containers[].image'`
+`kubectl get node -o jsonpath='{.items[0].spec.podCIDR}'`
+or
+`kubectl get node -o json | jq -r '.items[0].spec.podCIDR'`
+`k describe resourcequotas cpu-mem-quota`
+`k run busybox --image=jrecord/nettools --rm -it --restart Never -- curl 172.17.181.135`
+`netstat -tulpn | grep apiserver`
+
+`vim ~/.vimrc
+set expandtab
+set tabstop=2
+set shiftwidth=2`
 
 # Minikube
 ---

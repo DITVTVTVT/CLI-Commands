@@ -328,7 +328,7 @@ cat /dev/zero | bzip2 -c > /dev/null - CPU Stress Test
 | `cat /proc/meminfo`                                          | - избыточная инфа о памяти                                                                   |
 | **---------PROC-------**                                     |                                                                                              |
 | `ps aux`                                                     | - о процессах                                                                                |
-| `systemctl ststus *`                                         | - о процессах, запущенных от systemd                                                         |
+| `systemctl status *`                                         | - о процессах, запущенных от systemd                                                         |
 | `strace -p<PID>`                                             | - утилита для глубокой отладки процесса (need to install)                                    |
 | `sysdig`                                                     | - универсальное средство устранения неполадок в работе системы и процессов (need to install) |
 | **---------NET--------**                                     |                                                                                              |
