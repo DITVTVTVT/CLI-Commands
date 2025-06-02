@@ -259,6 +259,7 @@ curl http://172.18.0.1:3100/loki/api/v1/labels
 
 `ETCDCTL_API=3 etcdctl  --data-dir /var/lib/etcd-from-backup \
 snapshot restore /opt/snapshot-pre-boot.db`
+`etcdctl snapshot status snapshot --write-out=table`
 `watch "crictl ps | grep etcd"`
 `kubectl config get-clusters`
 `ssh cluster2-controlplane ps -ef | grep --color=auto etcd`
@@ -313,6 +314,33 @@ or
 set expandtab
 set tabstop=2
 set shiftwidth=2`
+
+Log locations to check:
+`/var/log/pods
+/var/log/containers
+crictl ps + crictl logs
+docker ps + docker logs (in case when Docker is used)
+kubelet logs: /var/log/syslog or journalctl`
+
+`k get events -A --sort-by='{.metadata.creationTimestamp}'`
+`k auth can-i list deployments --as system:serviceaccount:ns1:pipeline -n ns1`
+`k auth can-i get deploy --as system:serviceaccount:default:group1-sa`
+`kubectl top pods -A --sort-by=cpu --no-headers | head -1`
+`controlplane:~$ kubectl top pod --all-namespaces --no-headers | sort -k3 -rh | head -n 1 | awk '{print $2 "," $1}' > high_cpu_pod.txt
+controlplane:~$ cat high_cpu_pod.txt 
+kube-apiserver-controlplane,kube-system`
+
+`# list unit files with systemctl and grep for 'kube'
+sudo systemctl list-unit-files --type service --all | grep kube > services.csv`
+`cat /etc/kubernetes/kubelet.conf > kubelet-config.txt`
+`# view the certificate using openssl. Get the certificate file location from the 'kubelet.conf' file above.
+openssl x509 -in /var/lib/kubelet/pki/kubelet-client-current.pem -text -noout`
+`# get a shell to the pod and output the token (if mounted)
+kubectl exec secure-pod -- cat /var/run/secrets/kubernetes.io/serviceaccount/token`
+`kubeadm upgrade node phase kubelet-config`
+`k run netshoot --image nicolaka/netshoot --rm -it -- sh
+wget -O- apache-svc`
+
 
 # Minikube
 ---
