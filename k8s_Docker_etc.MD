@@ -340,6 +340,23 @@ kubectl exec secure-pod -- cat /var/run/secrets/kubernetes.io/serviceaccount/tok
 `kubeadm upgrade node phase kubelet-config`
 `k run netshoot --image nicolaka/netshoot --rm -it -- sh
 wget -O- apache-svc`
+`k -n project-c13 describe pod | less -p Requests
+k -n project-c13 describe pod | grep -A 3 -E 'Requests|^Name:'
+k -n project-c13 get pod -o jsonpath="{range .items[*]} {.metadata.name}{.spec.containers[*].resources}{'\n'}"
+k get pods -n project-c13 -o jsonpath="{range .items[*]}{.metadata.name} {.status.qosClass}{'\n'}"`
+`➜ / # TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
+➜ / # curl -k https://kubernetes.default/api/v1/secrets -H "Authorization: Bearer ${TOKEN}"`
+`- matches:
+        - path:
+            type: PathPrefix
+            value: /auto
+          headers:
+          - type: Exact
+            name: user-agent
+            value: mobile
+      backendRefs:
+        - name: web-mobile
+          port: 80`
 
 
 # Minikube
