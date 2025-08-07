@@ -350,7 +350,7 @@ cat /dev/zero | bzip2 -c > /dev/null - CPU Stress Test
 | `nslookup`                                                   | - то же                                                                                      |
 | `tcpdump -i any port 9100-nn`                                | - показывает, какие пакеты ходят через какие интерфейсы                                      |
 | `iftop`                                                      | - посмотреть трафик                                                                          |
-| `lsof -i -U                                                  | - посмотреть открытые сокеты                                                                 |
+| `lsof -i -U`                                                 | - посмотреть открытые сокеты                                                                 |
 | `lsof -i`                                                    | - посмотреть открытые порты                                                                  |
 | `nc [IP] [port]`                                             | - проверить, открыт ли порт на удаленном хосте                                               |
 | `telnet [IP] [port]`                                         | - то же, но интерактивно                                                                     |
@@ -416,28 +416,3 @@ find . -mount -type f -size +512M -print 2>/dev/null | xargs -r -d '\n' ls -lh |
 | 9  | `sar -n TCP,ETCP`  | Статистики TCP: частота приема соединений, частота повторных передач                                                                                                                                                                  | 10.6.6 |
 | 10 | `top`              | Общий обзор                                                                                                                                                                                                                           | 6.6.6  |
 
-
-## Основные команды управления KVM/libvirt через virsh и virt-install
-
-| Команда                                        | Назначение                                        |
-|------------------------------------------------|---------------------------------------------------|
-| `virsh list --all`                             | Показать все виртуальные машины                   |
-| `virsh start <vm>`                             | Запустить виртуальную машину                      |
-| `virsh shutdown <vm>`                          | Корректно выключить ВМ                            |
-| `virsh destroy <vm>`                           | Жёсткое выключение ВМ (аналог выдернуть питание)  |
-| `virsh undefine <vm>`                          | Удалить ВМ из конфигурации libvirt                |
-| `virsh define <vm.xml>`                        | Создать ВМ из XML-файла                           |
-| `virsh edit <vm>`                              | Редактировать XML-конфигурацию ВМ                 |
-| `virsh console <vm>`                           | Подключиться к консоли ВМ                         |
-| `virsh snapshot-create-as <vm> snap1`          | Создать снапшот виртуальной машины                |
-| `virsh net-list`                               | Показать активные виртуальные сети                |
-| `virsh net-define <net.xml>`                   | Определить виртуальную сеть из XML                |
-| `virsh net-start <name>`                       | Запустить виртуальную сеть                        |
-| `virsh net-autostart <name>`                   | Включить автозапуск сети при загрузке             |
-| `virsh pool-list --all`                        | Показать пулы хранения                            |
-| `virsh pool-define-as ...`                     | Создать пул хранения                              |
-| `virt-install --name ...`                      | Установить ВМ из ISO через CLI                    |
-| `virt-manager`                                 | GUI-интерфейс для управления ВМ                   |
-| `virsh dominfo <vm>`                           | Показать информацию о ВМ                          |
-| `virsh vol-list default`                       | Показать диски (volumes) в storage pool "default" |
-| `virsh attach-disk <vm> /path/to/disk.img vdb` | Подключить диск к ВМ как /dev/vdb                 |

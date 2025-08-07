@@ -500,4 +500,30 @@ ENV in PowerShell:
 `$token = Invoke-RestMethod -Uri http://169.254.169.254/latest/api/token -Method PUT -Headers @{"X-aws-ec2-metadata-token-ttl-seconds"="21600"}
 Invoke-RestMethod -Uri http://169.254.169.254/latest/meta-data/iam/security-credentials/ -Method GET -Headers @{"X-aws-ec2-metadata-token"=$token}`
 
+# KVM
+---
+## Основные команды управления KVM/libvirt через virsh и virt-install
+
+| Command                                        | Description                                       |
+|------------------------------------------------|---------------------------------------------------|
+| `virsh list --all`                             | Показать все виртуальные машины                   |
+| `virsh start <vm>`                             | Запустить виртуальную машину                      |
+| `virsh shutdown <vm>`                          | Корректно выключить ВМ                            |
+| `virsh destroy <vm>`                           | Жёсткое выключение ВМ (аналог выдернуть питание)  |
+| `virsh undefine <vm>`                          | Удалить ВМ из конфигурации libvirt                |
+| `virsh define <vm.xml>`                        | Создать ВМ из XML-файла                           |
+| `virsh edit <vm>`                              | Редактировать XML-конфигурацию ВМ                 |
+| `virsh console <vm>`                           | Подключиться к консоли ВМ                         |
+| `virsh snapshot-create-as <vm> snap1`          | Создать снапшот виртуальной машины                |
+| `virsh net-list`                               | Показать активные виртуальные сети                |
+| `virsh net-define <net.xml>`                   | Определить виртуальную сеть из XML                |
+| `virsh net-start <name>`                       | Запустить виртуальную сеть                        |
+| `virsh net-autostart <name>`                   | Включить автозапуск сети при загрузке             |
+| `virsh pool-list --all`                        | Показать пулы хранения                            |
+| `virsh pool-define-as ...`                     | Создать пул хранения                              |
+| `virt-install --name ...`                      | Установить ВМ из ISO через CLI                    |
+| `virt-manager`                                 | GUI-интерфейс для управления ВМ                   |
+| `virsh dominfo <vm>`                           | Показать информацию о ВМ                          |
+| `virsh vol-list default`                       | Показать диски (volumes) в storage pool "default" |
+| `virsh attach-disk <vm> /path/to/disk.img vdb` | Подключить диск к ВМ как /dev/vdb                 |
 
